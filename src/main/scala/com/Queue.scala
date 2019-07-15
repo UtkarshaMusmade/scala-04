@@ -1,5 +1,4 @@
-import com.DoubleQueue
-import com.SquareQueue
+package com
 
 trait Queue {
   def enqueue(list: List[Int], number: Int): List[Int] = {
@@ -11,17 +10,4 @@ trait Queue {
     val newlist: List[Int] = list.tail
     newlist
   }
-}
-
-
-
-object QueueOperations extends App {
-  val list = List(1, 2, 3)
-  val squarequeue = new SquareQueue(list)
-  val doublequeue = new DoubleQueue(list)
-
-
-
-
-
 }

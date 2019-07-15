@@ -8,7 +8,7 @@ class Person(val name: String, val age: Int) extends Ordered[Person] {
     else if (this.name.length < this.name.length) 1 else 0
 
   }
-
+  
 }
 
 object Person extends App {
