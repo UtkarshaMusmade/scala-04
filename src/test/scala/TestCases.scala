@@ -14,12 +14,13 @@ class TestCases extends WordSpec {
   val age = new Age(21)
 
   val list = List(1, 2, 3)
-  val squarequeue = new SquareQueue(list)
-  val doublequeue = new DoubleQueue(list)
+
+  val squarequeue = new SquareQueue()
+  val doublequeue = new DoubleQueue
 
 
   // val displaydetails = new DisplayDetails
-  // val queueoperations = new QueueOperations
+  val queueoperations = new QueueOperations
   "Comparison" should {
     "compare person1 and person2" in {
       assert(personOne.compare(personTwo) == 1)
@@ -34,15 +35,18 @@ class TestCases extends WordSpec {
 
   }
 
+  val newlist: List[Int] = queueoperations.performOperations(list, 3, queueoperations.enqueueSquaredElement)
+  val newlist1: List[Int] = queueoperations.performOperations(newlist, 3, queueoperations.enqueueDoubledElement)
   "List" should {
     "enqueue element after squaring" in {
-      assert(squarequeue.square(3) == 9)
+      assert(newlist == List(1, 2, 3, 9))
     }
     "enqueue element after doubling" in {
-      assert(doublequeue.double(3) == 6)
+      assert(newlist1 == List(1, 2, 3, 9, 6))
+    }
+    "dequeue element " in {
+      assert(queueoperations.dequeueElement(newlist1) == List(2, 3, 9, 6))
     }
 
   }
-
-
 }
