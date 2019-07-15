@@ -1,38 +1,31 @@
+import com.{DoubleQueue, Queue, SquareQueue}
 
 
-trait Queue {
-  def enqueue(list: List[Int], number: Int): List[Int] = {
-    val newlist: List[Int] = list :+ number;
-    newlist
+class QueueOperations extends Queue {
+
+
+  val squarequeue = new SquareQueue
+  val doublequeue = new DoubleQueue
+
+
+  def performOperations(list: List[Int], number: Int, f: (List[Int], Int) => List[Int]): List[Int] = {
+
+    f(list, number)
   }
 
-  def dequeue(list: List[Int]): List[Int] = {
-    val newlist: List[Int] = list.tail
-    newlist
-  }
-}
 
-class SquareQueue(list: List[Int]) extends Queue {
 
-  def square(number: Int): Int = number * number
-  val newlist = enqueue(list, square(3))
-  println(dequeue(newlist))
-}
+  def enqueueSquaredElement(list: List[Int], number: Int) = enqueue(list, squarequeue.square(number))
 
-class DoubleQueue(list: List[Int]) extends Queue {
+  def enqueueDoubledElement(list: List[Int], number: Int) = enqueue(list, doublequeue.double(number))
 
-  def double(number: Int): Int = number + number
-  val newlist=enqueue(list, double(4))
-  println(dequeue(newlist))
+  def dequeueElement(list: List[Int]): List[Int] = dequeue(list)
 }
 
 object QueueOperations extends App {
+  val q = new QueueOperations
   val list = List(1, 2, 3)
-  val squarequeue = new SquareQueue(list)
-  val doublequeue = new DoubleQueue(list)
-
-
-
-
+  println(q.performOperations(list, 3, q.enqueueSquaredElement))
+  println(q.performOperations(list, 3, q.enqueueDoubledElement))
 
 }
